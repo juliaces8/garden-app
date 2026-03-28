@@ -1,31 +1,43 @@
-# Hardcoded values for the season and plant type
-season = input("Enter season: ").lower().strip()
-plant_type = input("Enter plant type: ").lower().strip()
+def get_gardening_advice(season, plant_type):
+    """
+    Returns gardening advice based on the season and type of plant.
+    Uses dictionaries to map inputs to specific advice strings.
+    """
+    # 1. Store advice in a dictionary (Satisfies TODO)
+    seasonal_data = {
+        "summer": "Water your plants regularly and provide some shade.",
+        "winter": "Protect your plants from frost with covers.",
+        "spring": "Prepare the soil and start planting new seeds.",
+        "autumn": "Mulch your garden to protect roots for the winter."
+    }
 
-# Variable to hold gardening advice
-advice = ""
+    plant_data = {
+        "flower": "Use fertiliser to encourage blooms.",
+        "vegetable": "Keep an eye out for pests!",
+        "herb": "Trim regularly to encourage bushy growth."
+    }
 
-# Determine advice based on the season
-if season == "summer":
-    advice += "Water your plants regularly and provide some shade.\n"
-elif season == "winter":
-    advice += "Protect your plants from frost with covers.\n"
-else:
-    advice += "No advice for this season.\n"
+    # 2. Use .get() to find advice or return a default message
+    s_advice = seasonal_data.get(season, "No specific advice for this season.")
+    p_advice = plant_data.get(plant_type, "No specific advice for this plant.")
 
-# Determine advice based on the plant type
-if plant_type == "flower":
-    advice += "Use fertiliser to encourage blooms."
-elif plant_type == "vegetable":
-    advice += "Keep an eye out for pests!"
-else:
-    advice += "No advice for this type of plant."
+    return f"{s_advice}\n{p_advice}"
 
-# Print the generated advice
-print(advice)
 
-# TODO: Examples of possible features to add:
-# - Add detailed comments explaining each block of code.
-# - Refactor the code into functions for better readability and modularity.
-# - Store advice in a dictionary for multiple plants and seasons.
-# - Recommend plants based on the entered season.
+def main():
+    """Main function to handle user interaction and output."""
+    print("--- Welcome to the Gardening Enthusiast App ---")
+
+    # 3. Get User Input (Satisfies TODO)
+    user_season = input("Enter the current season: ").strip().lower()
+    user_plant = input("Enter your plant type: ").strip().lower()
+
+    # 4. Generate and display advice
+    result = get_gardening_advice(user_season, user_plant)
+
+    print("\n--- Your Gardening Advice ---")
+    print(result)
+
+
+if __name__ == "__main__":
+    main()
